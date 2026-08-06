@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# 12 MB source Access database — not redistributed here.
+# Download from the DCMA DIBCAC public site; see extract/ for the pipeline.
+Public_800-171_Self_Asmt_DB_v1.1.accdb
+
+# Third-party jars used only for the one-off .accdb extraction
+extract/lib/
+
+# Playwright
+app/test-results/
+app/playwright-report/
+app/.playwright/
+
+# TS incremental build info
+*.tsbuildinfo

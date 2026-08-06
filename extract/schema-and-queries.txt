@@ -1,0 +1,229 @@
+### FILE FORMAT: V2010 [VERSION_14]
+
+### USER TABLES (5)
+LnkTbl_RequirementsToFamilies                 rows=110     cols=3
+    ID:LONG, Family_Number:TEXT, Requirement_Number:TEXT
+LnkTbl_RequirementsToObjectives               rows=320     cols=3
+    ID:LONG, Requirement_Number:TEXT, Objective_Number:TEXT
+Tbl_Family_Names                              rows=14      cols=4
+    Sorting:LONG, Family_Number:TEXT, Family_Name:TEXT, CMMC_Domain:TEXT
+Tbl_Objectives                                rows=320     cols=9
+    Objective_Number:TEXT, Objective_Text:MEMO, Objective_Satisfied:BOOLEAN, Objective_Other_Than_Satisfied:BOOLEAN, Documents_Examined_Details:MEMO, SME_Interviewed_Names:MEMO, Validation_Text:MEMO, Notes:MEMO, Standard:TEXT
+Tbl_Requirements                              rows=110     cols=13
+    Req_Sorting:LONG, Requirement_Number:TEXT, Requirement_Description:MEMO, Requirement_Score:INT, Requirement_Special_Considerations:MEMO, Requirement_Special_Considerations_Score:INT, Requirement_Satisfied:BOOLEAN, Requirement_Other_Than_Satisfied:BOOLEAN, Requirement_Special_Considerations_Satisfied:BOOLEAN, Requirement_Discussion:MEMO, POAM:BOOLEAN, POAM_Date:SHORT_DATE_TIME, CMMC_Practice_Number:TEXT
+
+### SYSTEM TABLES (25): [f_C3478028C682434A9A92C86CADF548FF_Data, MSysAccessStorage, MSysAccessXML, MSysACEs, MSysComplexColumns, MSysComplexType_Attachment, MSysComplexType_Decimal, MSysComplexType_GUID, MSysComplexType_IEEEDouble, MSysComplexType_IEEESingle, MSysComplexType_Long, MSysComplexType_Short, MSysComplexType_Text, MSysComplexType_UnsignedByte, MSysIMEXColumns, MSysIMEXSpecs, MSysNameMap, MSysNavPaneGroupCategories, MSysNavPaneGroups, MSysNavPaneGroupToObjects, MSysNavPaneObjectIDs, MSysObjects, MSysQueries, MSysRelationships, MSysResources]
+
+### SAVED QUERIES (48)
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo40  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo42  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo45  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo47  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo50  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo52  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo55  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo57  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo81  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo84  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cCombo86  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cDeputy_Lead_Name  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cCMMC_Frm_Assignments~sq_cLead_Name  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo40  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo42  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo45  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo47  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo50  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo52  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo55  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo57  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo81  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo84  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cCombo86  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cDeputy_Lead_Name  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Assignments~sq_cLead_Name  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Med_Assignments~sq_cCombo81  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Med_Assignments~sq_cDeputy_Lead_Name  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Med_Assignments~sq_cLead_Name  [SELECT]
+SELECT Tbl_DIBCAC_Staff.DIBCAC_Name
+FROM Tbl_DIBCAC_Staff;
+
+--- ~sq_cFrm_Updating_SubFamilies~sq_cCbo_Assessment_Docs  [SELECT]
+SELECT [Tbl_Assessment_Documents].[ID], [Tbl_Assessment_Documents].[Document_Full_Name], [Tbl_Assessment_Documents].[Documrnt Version], [Tbl_Assessment_Documents].[Document Date]
+FROM Tbl_Assessment_Documents
+ORDER BY [Document_Full_Name];
+
+--- ~sq_cFrm_Updating_SubFamilies~sq_cCombo5  [SELECT]
+SELECT Tbl_Family_Names.Family_Number
+FROM Tbl_Family_Names
+ORDER BY Tbl_Family_Names.Sorting;
+
+--- ~sq_cInitial_Switchboard~sq_cAssessorNameInput  [SELECT]
+PARAMETERS __Assessor Name Value;
+SELECT DISTINCTROW *
+FROM Qry_Initial_Staff AS Initial_Switchboard
+WHERE ([__Assessor Name] = DIBCAC_Name);
+
+--- ~sq_rRpt_Offline_Guide  [SELECT]
+SELECT Tbl_Family_Names.Sorting, Tbl_Family_Names.Family_Number, Tbl_Family_Names.Family_Name, LnkTbl_RequirementsToFamilies.Requirement_Number, Tbl_Requirements.Requirement_Description, Tbl_Requirements.Requirement_Score, Tbl_Requirements.Req_Sorting, Tbl_Requirements.Requirement_Special_Considerations, Tbl_Requirements.Requirement_Special_Considerations_Score, Tbl_Requirements.Requirement_Satisfied, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Requirements.Requirement_Special_Considerations_Satisfied, Tbl_Requirements.Requirement_Discussion, LnkTbl_RequirementsToObjectives.Objective_Number, Tbl_Objectives.Objective_Text, Tbl_Objectives.Objective_Satisfied, Tbl_Objectives.Objective_Other_Than_Satisfied, Tbl_Objectives.Documents_Examined_Details, Tbl_Objectives.SME_Interviewed_Names, Tbl_Objectives.Validation_Text, Tbl_Objectives.Notes
+FROM Tbl_Objectives INNER JOIN ((Tbl_Requirements INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToFamilies.Requirement_Number) INNER JOIN LnkTbl_RequirementsToObjectives ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToObjectives.Requirement_Number) ON Tbl_Objectives.Objective_Number = LnkTbl_RequirementsToObjectives.Objective_Number
+WHERE (((Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox1] Or ((Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox2] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox3]) Or ((Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox4] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox5]) Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox6] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox7] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox8] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox9] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox10] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox11] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox12] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox13] Or (Tbl_Family_Names.Family_Number) Like [Forms]![Frm_Select_Families_to_Print]![MyBox14]));
+
+--- Qry_All_Objectives  [SELECT]
+SELECT Tbl_Family_Names.Family_Number, Tbl_Family_Names.Family_Name, Tbl_Requirements.Requirement_Number, Tbl_Requirements.Requirement_Description, Tbl_Requirements.Requirement_Score, Tbl_Requirements.Requirement_Special_Considerations, Tbl_Requirements.Requirement_Special_Considerations_Score, Tbl_Objectives.Objective_Number, Tbl_Objectives.Objective_Text, Tbl_Objectives.Objective_Satisfied, Tbl_Objectives.Objective_Other_Than_Satisfied, Tbl_Objectives.Typical_Technologies_Used, Tbl_Objectives.Typical_Questions_Asked, Tbl_Objectives.Observation
+FROM Tbl_Objectives INNER JOIN ((Tbl_Requirements INNER JOIN LnkTbl_RequirementsToObjectives ON (Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToObjectives.Requirement_Number) AND (Tbl_Requirements.[Requirement_Number] = LnkTbl_RequirementsToObjectives.[Requirement_Number])) INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.[Requirement_Number] = LnkTbl_RequirementsToFamilies.[Requirement_Number]) ON Tbl_Objectives.Objective_Number = LnkTbl_RequirementsToObjectives.Objective_Number;
+
+--- Qry_Blank_Objectives  [SELECT]
+SELECT Tbl_Requirements.Req_Sorting, Tbl_Requirements.Requirement_Number, Tbl_Objectives.Objective_Number, Len([Validation_Text]) AS Expr1
+FROM Tbl_Objectives INNER JOIN (Tbl_Requirements INNER JOIN LnkTbl_RequirementsToObjectives ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToObjectives.Requirement_Number) ON Tbl_Objectives.Objective_Number = LnkTbl_RequirementsToObjectives.Objective_Number
+WHERE (((Len([Validation_Text])) Is Null Or (Len([Validation_Text]))<2))
+ORDER BY Tbl_Requirements.Req_Sorting;
+
+--- Qry_Clear_Objectives  [UPDATE]
+UPDATE Tbl_Objectives
+SET Tbl_Objectives.Objective_Satisfied = False, Tbl_Objectives.Objective_Other_Than_Satisfied = False, Tbl_Objectives.Documents_Examined_Details = Null, Tbl_Objectives.SME_Interviewed_Names = Null, Tbl_Objectives.Validation_Text = Null, Tbl_Objectives.Notes = Null;
+
+--- Qry_Clear_Requirements  [UPDATE]
+UPDATE Tbl_Requirements
+SET Tbl_Requirements.Requirement_Satisfied = False, Tbl_Requirements.Requirement_Other_Than_Satisfied = False, Tbl_Requirements.Requirement_Special_Considerations_Satisfied = False, Tbl_Requirements.POAM_Date = Null;
+
+--- Qry_Daily_Summary_Feed  [SELECT]
+SELECT Tbl_Family_Names.Family_Number, Tbl_Requirements.Requirement_Number, Tbl_Requirements.Requirement_Satisfied, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Requirements.Requirement_Special_Considerations_Score, Tbl_Requirements.Requirement_Special_Considerations_Satisfied, Tbl_Family_Names.Sorting, Tbl_Requirements.Req_Sorting
+FROM Tbl_Requirements INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.[Requirement_Number] = LnkTbl_RequirementsToFamilies.[Requirement_Number]
+ORDER BY Tbl_Family_Names.Sorting, Tbl_Requirements.Req_Sorting;
+
+--- Qry_Families_And_Requirements  [SELECT]
+SELECT Tbl_Family_Names.Family_Number, Tbl_Family_Names.Family_Name, Tbl_Requirements.Requirement_Number, Tbl_Requirements.Requirement_Description, Tbl_Requirements.Requirement_Score, Tbl_Requirements.Requirement_Special_Considerations, Tbl_Requirements.Requirement_Special_Considerations_Score, Tbl_Requirements.Requirement_Satisfied, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Requirements.Requirement_Special_Considerations_Satisfied, Tbl_Requirements.Requirement_Discussion, Tbl_Requirements.POAM, Tbl_Requirements.POAM_Date
+FROM Tbl_Requirements INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.[Requirement_Number] = LnkTbl_RequirementsToFamilies.[Requirement_Number]
+WHERE (((Tbl_Family_Names.Family_Number)=[Forms]![Frm_Families_and_Objectives]![Combo5]))
+ORDER BY Tbl_Requirements.Req_Sorting;
+
+--- Qry_Objectives_And_Requirements  [SELECT]
+SELECT Tbl_Requirements.Requirement_Number, Tbl_Objectives.Objective_Number, Tbl_Objectives.Objective_Text, Tbl_Objectives.Objective_Satisfied, Tbl_Objectives.Objective_Other_Than_Satisfied, Tbl_Objectives.Documents_Examined_Details, Tbl_Objectives.SME_Interviewed_Names, Tbl_Objectives.Validation_Text, Tbl_Objectives.Notes, Tbl_Objectives.Standard
+FROM Tbl_Requirements INNER JOIN (Tbl_Objectives INNER JOIN LnkTbl_RequirementsToObjectives ON Tbl_Objectives.Objective_Number = LnkTbl_RequirementsToObjectives.Objective_Number) ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToObjectives.Requirement_Number
+WHERE (((Tbl_Requirements.Requirement_Number)=[Forms]![Frm_Families_and_Objectives]![Requirement_Number]))
+ORDER BY Tbl_Objectives.Objective_Number;
+
+--- Qry_OTS  [SELECT]
+SELECT Tbl_Family_Names.Sorting, Tbl_Family_Names.Family_Number, Tbl_Requirements.Req_Sorting, Tbl_Requirements.Requirement_Number, PlainText([Tbl_Requirements].[Requirement_Description]) AS Requirement_Description, Tbl_Requirements.Requirement_Score AS Points, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Requirements.Requirement_Special_Considerations_Score AS SC_Points, IIf([Requirement_Special_Considerations_Satisfied]=True,[Requirement_Special_Considerations_Score],[Requirement_Score]) AS TotalDeducted, Tbl_Objectives.Objective_Number, Tbl_Objectives.Objective_Text, Tbl_Objectives.Objective_Other_Than_Satisfied, Tbl_Requirements.POAM, Tbl_Requirements.POAM_Date, Tbl_Requirements.CMMC_Practice_Number, Tbl_Objectives.Validation_Text
+FROM Tbl_Objectives INNER JOIN ((Tbl_Requirements INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToFamilies.Requirement_Number) INNER JOIN LnkTbl_RequirementsToObjectives ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToObjectives.Requirement_Number) ON Tbl_Objectives.Objective_Number = LnkTbl_RequirementsToObjectives.Objective_Number
+WHERE (((Tbl_Objectives.Objective_Other_Than_Satisfied)=True))
+ORDER BY Tbl_Family_Names.Sorting, Tbl_Requirements.Req_Sorting, Tbl_Objectives.Objective_Number;
+
+--- Qry_Percent_Requirements_Complete  [SELECT]
+SELECT Count(Tbl_Requirements.Requirement_Number) AS CountOfRequirement_Number, Sum(Abs([Requirement_Satisfied])) AS TotalSatisfied, Sum(Abs([Requirement_Other_Than_Satisfied])) AS TotalOther, Sum(Abs([Requirement_Special_Considerations_Satisfied])) AS TotalSpecialSatisfied, ([CountOfRequirement_Number])-([TotalSatisfied]+[TotalOther]+[TotalSpecialSatisfied]) AS Remaining, Round((110-[Remaining])/Count([Tbl_Requirements].[Requirement_Number])*100) AS PercentCompleted
+FROM Tbl_Requirements;
+
+--- Qry_Requirements_Only  [SELECT]
+SELECT Tbl_Requirements.Requirement_Number, Tbl_Requirements.Req_Sorting, Tbl_Requirements.Requirement_Description
+FROM Tbl_Requirements
+ORDER BY Tbl_Requirements.Req_Sorting;
+
+--- Qry_Scorecard  [SELECT]
+SELECT 110-nz((Sum(Abs(Qry_Scorecard_Feed.TotalScore)))) AS CurrentScore
+FROM Qry_Scorecard_Feed;
+
+--- Qry_Scorecard_Feed  [SELECT]
+SELECT Tbl_Requirements.Requirement_Number, Tbl_Requirements.Requirement_Score, Tbl_Requirements.Requirement_Special_Considerations_Score, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Requirements.Requirement_Special_Considerations_Satisfied, IIf([Requirement_Other_Than_Satisfied]=True,[Requirement_Score],([Requirement_Special_Considerations_Score])) AS TotalScore
+FROM Tbl_Requirements
+WHERE (((Tbl_Requirements.Requirement_Other_Than_Satisfied)=True)) OR (((Tbl_Requirements.Requirement_Special_Considerations_Satisfied)=True));
+
+--- Qry_SearchAll  [SELECT]
+SELECT DISTINCT Tbl_Objectives.Objective_Number, Tbl_Requirements.Requirement_Number, Tbl_Objectives.Documents_Examined_Details, Tbl_Objectives.Validation_Text, Tbl_Objectives.Notes, Tbl_Objectives.Objective_Text, Tbl_Objectives.SME_Interviewed_Names, Tbl_Requirements.Requirement_Description, Tbl_Requirements.Requirement_Discussion, Tbl_Objectives.Standard, Tbl_Requirements.Req_Sorting
+FROM Tbl_Requirements INNER JOIN (Tbl_Objectives INNER JOIN LnkTbl_RequirementsToObjectives ON Tbl_Objectives.Objective_Number = LnkTbl_RequirementsToObjectives.Objective_Number) ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToObjectives.Requirement_Number
+WHERE (((Tbl_Objectives.Documents_Examined_Details) Like "*" & forms!FRM_SearchMulti!SrchDocs & "*")) Or (((Tbl_Objectives.Validation_Text) Like "*" & forms!FRM_SearchMulti!SrchVald & "*")) Or (((Tbl_Objectives.Notes) Like "*" & forms!FRM_SearchMulti!SrchNote & "*")) Or (((Tbl_Objectives.Objective_Text) Like "*" & forms!FRM_SearchMulti!SrchObjs & "*")) Or (((Tbl_Objectives.SME_Interviewed_Names) Like "*" & forms!FRM_SearchMulti!SrchIntv & "*")) Or (((Tbl_Requirements.Requirement_Description) Like "*" & forms!FRM_SearchMulti!SrchReqs & "*")) Or (((Tbl_Requirements.Requirement_Discussion) Like "*" & forms!FRM_SearchMulti!SrchDisc & "*")) Or (((Tbl_Objectives.Standard) Like "*" & forms!FRM_SearchMulti!SrchStan & "*"))
+ORDER BY Tbl_Requirements.Req_Sorting;
+
+--- Qry_Summary  [SELECT]
+SELECT Tbl_Family_Names.Sorting, Tbl_Family_Names.Family_Number, Tbl_Family_Names.Family_Name, Tbl_Requirements.Requirement_Satisfied, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Requirements.Requirement_Special_Considerations_Satisfied, Tbl_Requirements.Requirement_Score, Tbl_Requirements.Requirement_Special_Considerations_Score, IIf([Requirement_Satisfied]=True,0,IIf([Requirement_Other_Than_Satisfied]=True,[Requirement_Score],IIf([Requirement_Special_Considerations_Satisfied]=True,[Requirement_Special_Considerations_Score],0))) AS TotalDeducted, Tbl_Family_Names.CMMC_Domain
+FROM Tbl_Requirements INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.Requirement_Number = LnkTbl_RequirementsToFamilies.Requirement_Number
+ORDER BY Tbl_Family_Names.Sorting;
+
+--- Qry_Whiteboard  [SELECT]
+SELECT Tbl_Family_Names.Family_Number, Tbl_Requirements.Requirement_Number, Tbl_Requirements.Requirement_Satisfied, Tbl_Requirements.Requirement_Other_Than_Satisfied, Tbl_Family_Names.Sorting, Tbl_Requirements.[Req_Sorting]
+FROM Tbl_Requirements INNER JOIN (Tbl_Family_Names INNER JOIN LnkTbl_RequirementsToFamilies ON Tbl_Family_Names.Family_Number = LnkTbl_RequirementsToFamilies.Family_Number) ON Tbl_Requirements.[Requirement_Number] = LnkTbl_RequirementsToFamilies.[Requirement_Number]
+ORDER BY Tbl_Family_Names.Sorting, Tbl_Requirements.[Req_Sorting];
+

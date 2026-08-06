@@ -1,0 +1,69 @@
+name: Build, test and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+
+      # Silent data drift must fail CI, not the UI.
+      - name: Codegen is reproducible
+        run: |
+          pnpm run gen
+          git diff --exit-code -- src/generated
+
+      - run: pnpm run typecheck
+
+      # Includes the catalogue invariants, the -203 floor property test, and
+      # the node:sqlite Qry_Summary oracle diff.
+      - name: Unit, property and oracle tests
+        run: pnpm run test
+
+      - run: pnpm run build
+
+      # Privacy/compliance tests that read the BUILT output (38, 43, T).
+      - name: Re-run tests against dist/
+        run: pnpm vitest run tests/privacy.test.ts
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
