@@ -12,7 +12,10 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Deliberately NOT cancel-in-progress: a Pages deployment can sit in
+  # `deployment_queued` for a long time, and cancelling it to start a fresh one
+  # just restarts the wait.
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -43,6 +46,8 @@ jobs:
 
       - run: pnpm run typecheck
 
+      - run: pnpm run lint
+
       # Includes the catalogue invariants, the -203 floor property test, and
       # the node:sqlite Qry_Summary oracle diff.
       - name: Unit, property and oracle tests
@@ -53,6 +58,11 @@ jobs:
       # Privacy/compliance tests that read the BUILT output (38, 43, T).
       - name: Re-run tests against dist/
         run: pnpm vitest run tests/privacy.test.ts
+
+      # E2E runs against the BUILT output served from a repository subpath,
+      # which is where the GitHub Pages failure mode lives (gotcha P).
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright test
 
       - uses: actions/upload-pages-artifact@v3
         with:
