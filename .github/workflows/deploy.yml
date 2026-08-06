@@ -10,7 +10,10 @@ permissions:
   contents: write
 
 concurrency:
-  group: pages
+  # NOT "pages": an abandoned re-run is stuck holding that group in a state
+  # GitHub will not let us cancel, which silently prevents new runs from even
+  # being created.
+  group: pages-deploy
   cancel-in-progress: false
 
 jobs:
