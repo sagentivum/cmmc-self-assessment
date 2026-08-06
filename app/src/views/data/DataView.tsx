@@ -145,7 +145,11 @@ export function DataView(): React.ReactElement {
             different catalogue build are accepted, but entries that no longer match a requirement
             are dropped and reported.
           </p>
+          <label htmlFor="import-file" className="small" style={{ display: 'block' }}>
+            Choose an exported assessment file
+          </label>
           <input
+            id="import-file"
             ref={fileRef}
             type="file"
             accept="application/json,.json"
