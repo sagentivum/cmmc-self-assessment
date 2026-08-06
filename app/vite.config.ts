@@ -17,6 +17,14 @@ export default defineConfig({
     // Assessment data never leaves the browser; sourcemaps are just weight.
     sourcemap: false,
     assetsInlineLimit: 0,
+    rollupOptions: {
+      output: {
+        // The compiled catalogue is ~380 kB of the bundle and never changes
+        // between releases. Splitting it out keeps it cached across deploys.
+        manualChunks: (id) =>
+          id.includes('/src/generated/') ? 'catalogue' : id.includes('node_modules') ? 'vendor' : undefined,
+      },
+    },
   },
   test: {
     environment: 'jsdom',

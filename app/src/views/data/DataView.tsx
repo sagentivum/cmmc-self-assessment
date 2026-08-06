@@ -1,6 +1,12 @@
 import { useRef, useState } from 'react';
 import { useStore } from '../../state/store';
-import { buildExport, evidenceRequestText, exportFilename, parseImport } from '../../state/io';
+import {
+  buildExport,
+  evidenceRequestText,
+  exportFilename,
+  otsExportCsv,
+  parseImport,
+} from '../../state/io';
 import { downloadText, readFileAsText } from '../../lib/download';
 import { CATALOGUE_META } from '../../generated/catalogue.meta';
 import { useScore } from '../../lib/useScore';
@@ -112,7 +118,24 @@ export function DataView(): React.ReactElement {
             <button type="button" className="btn" onClick={onEvidenceExport}>
               Export evidence request list (text)
             </button>
+            <button
+              type="button"
+              className="btn"
+              onClick={() =>
+                downloadText(
+                  `ots-objectives-${new Date().toISOString().slice(0, 10)}.csv`,
+                  otsExportCsv(assessment),
+                  'text/csv',
+                )
+              }
+            >
+              Export other-than-satisfied objectives (CSV)
+            </button>
           </div>
+          <p className="tiny faint" style={{ marginTop: '0.5rem', marginBottom: 0 }}>
+            The CSV mirrors the source database&rsquo;s <span className="mono">Qry_OTS</span>: one
+            row per objective you have marked not met, ordered family → requirement → objective.
+          </p>
         </section>
 
         <section className="card">

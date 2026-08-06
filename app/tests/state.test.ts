@@ -4,7 +4,13 @@ import { CATALOGUE } from '../src/domain/catalogue';
 import { CATALOGUE_META } from '../src/generated/catalogue.meta';
 import { scoreAssessment } from '../src/scoring/engine';
 import { STORAGE_KEY, DISCLAIMER, emptyAssessment } from '../src/state/schema';
-import { buildExport, exportFilename, parseImport } from '../src/state/io';
+import {
+  buildExport,
+  evidenceRequestText,
+  exportFilename,
+  otsExportCsv,
+  parseImport,
+} from '../src/state/io';
 import { migrateAssessment, sanitise } from '../src/state/migrate';
 import { useStore } from '../src/state/store';
 import { allStatus, blank, withStatuses } from './helpers';
@@ -179,6 +185,36 @@ describe('export / import', () => {
     expect(migrated.requirements['nope']).toBeUndefined();
     expect(migrateAssessment('garbage', 1).requirements).toEqual({});
     expect(migrateAssessment(a, 99).requirements).toEqual({});
+  });
+
+  it('Qry_OTS mirror: one row per not-met objective, with the score-consistent deduction', () => {
+    const a = withStatuses({ '3.1.1': 'not-satisfied', '3.5.3': 'partial', '3.1.2': 'satisfied' });
+    a.objectives['3.1.1[a]'] = { status: 'not-satisfied', updatedAt: a.updatedAt };
+    a.objectives['3.1.1[b]'] = { status: 'satisfied', updatedAt: a.updatedAt };
+    a.objectives['3.5.3[a]'] = { status: 'not-satisfied', updatedAt: a.updatedAt };
+
+    const csv = otsExportCsv(a);
+    const lines = csv.split('\n');
+    expect(lines[0]).toMatch(/^family_number,/);
+    expect(lines).toHaveLength(3); // header + two OTS objectives
+    expect(lines[1]).toContain('3.1.1[a]');
+    expect(lines[1]).toContain(',5,'); // requirement weight
+    // 3.5.3 is partial, so the deduction is 3 — the same number the score used,
+    // NOT Qry_OTS's un-negated `Points`.
+    expect(lines[2]).toMatch(/3\.5\.3\[a\]/);
+    expect(lines[2]).toContain(',5,3,3,partial,');
+    // Satisfied objectives never appear.
+    expect(csv).not.toContain('3.1.1[b]');
+    expect(csv).not.toContain('3.1.2');
+  });
+
+  it('the evidence request list embeds the disclaimer and excludes satisfied requirements', () => {
+    const a = withStatuses({ '3.1.1': 'satisfied', '3.1.2': 'not-satisfied' });
+    const text = evidenceRequestText(a, new Date('2026-05-05T00:00:00Z'));
+    expect(text).toContain(DISCLAIMER);
+    expect(text).not.toMatch(/^AC\.L1-3\.1\.1\b/m);
+    expect(text).toMatch(/^AC\.L1-3\.1\.2\b/m);
+    expect(text).toContain('<Screen Share>');
   });
 
   it('accepts a bare assessment object as well as the export envelope', () => {

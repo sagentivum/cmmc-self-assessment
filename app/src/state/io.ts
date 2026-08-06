@@ -160,6 +160,72 @@ export function parseImport(text: string): ImportResult {
   };
 }
 
+/**
+ * Mirrors the source database's `Qry_OTS`: every assessment objective marked
+ * other-than-satisfied, ordered family → requirement → objective, with the
+ * requirement's deduction alongside.
+ *
+ * One deliberate divergence: Qry_OTS computes TotalDeducted as
+ * `IIf(SpecialConsiderations, SC_Points, Points)` — it never checks Satisfied,
+ * so a row flagged both Satisfied and OTS still deducts there (gotcha D).
+ * Our single-enum model makes that state unrepresentable, so this export uses
+ * the same deduction the score uses.
+ */
+export function otsExportCsv(assessment: Assessment): string {
+  const esc = (v: string | number | null): string => {
+    const s = v === null ? '' : String(v);
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const rows: string[] = [
+    [
+      'family_number',
+      'family_name',
+      'requirement',
+      'cmmc_practice',
+      'requirement_description',
+      'points',
+      'special_consideration_points',
+      'deducted',
+      'requirement_status',
+      'objective',
+      'objective_text',
+      'evidence_standard',
+      'poam',
+      'poam_date',
+    ].join(','),
+  ];
+  for (const r of CATALOGUE) {
+    const entry = assessment.requirements[r.requirement];
+    const status = entry?.status ?? 'unassessed';
+    const deducted =
+      status === 'not-satisfied' ? r.weight : status === 'partial' ? (r.partialWeight ?? 0) : 0;
+    for (const o of r.objectives) {
+      if (assessment.objectives[o.objective]?.status !== 'not-satisfied') continue;
+      rows.push(
+        [
+          r.familyNumber,
+          r.familyName,
+          r.requirement,
+          r.cmmcPractice,
+          r.description,
+          r.weight,
+          r.partialWeight,
+          deducted,
+          status,
+          o.objective,
+          o.text,
+          o.evidenceStandard,
+          entry?.poam ? 'yes' : 'no',
+          entry?.poamDate ?? null,
+        ]
+          .map(esc)
+          .join(','),
+      );
+    }
+  }
+  return rows.join('\n');
+}
+
 /** Gotcha G: this list is built from evidence_standard + the objective text,
  *  which the source database DOES contain. There is no "typical questions
  *  asked" data anywhere in Tbl_Objectives — do not invent it. */
