@@ -6,15 +6,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  # `contents: write` so the deploy job can push the built site to gh-pages.
+  contents: write
 
 concurrency:
   group: pages
-  # Deliberately NOT cancel-in-progress: a Pages deployment can sit in
-  # `deployment_queued` for a long time, and cancelling it to start a fresh one
-  # just restarts the wait.
   cancel-in-progress: false
 
 jobs:
@@ -64,21 +60,24 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm exec playwright test
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: app/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          # GitHub's Pages ingestion has been sitting in `deployment_queued`
-          # well past the 10-minute default on this repo. Give it 30.
-          timeout: 1800000
-          error_count: 20
+      # Publish by pushing dist/ to the gh-pages branch, which Pages serves via
+      # its legacy branch build.
+      #
+      # WHY NOT actions/deploy-pages: on this repo that action reliably stalls in
+      # `deployment_queued` past its timeout and the run fails, even though the
+      # site itself builds fine. A branch push completes in ~20s. The tradeoff is
+      # that `base: './'` in vite.config.ts is doing the work an absolute base
+      # would otherwise do — relative asset URLs are what make this path safe.
+      - name: Publish to gh-pages
+        if: github.ref == 'refs/heads/main'
+        run: |
+          touch dist/.nojekyll
+          cd dist
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Deploy ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
