@@ -16,7 +16,6 @@
  */
 import { FAMILIES, FAMILY_WEIGHT, compareRequirements } from '../domain/catalogue';
 import type { Requirement, Status } from '../domain/types';
-import { STATUSES } from '../domain/types';
 import { MAX_SCORE, MIN_SCORE, TOTAL_WEIGHT } from './constants';
 import type { Assessment } from '../state/schema';
 
@@ -41,7 +40,7 @@ export function deductionFor(req: Requirement, status: Status): number {
     if (req.partialWeight === null) {
       throw new Error(
         `Requirement ${req.requirement} is not partial-credit eligible ` +
-          `(only ${'3.5.3'} and ${'3.13.11'} carry a partial weight).`,
+          '(only 3.5.3 and 3.13.11 carry a partial weight).',
       );
     }
     return req.partialWeight;
@@ -323,7 +322,9 @@ export function assertCatalogueInvariants(catalogue: readonly Requirement[]): vo
     }
   }
 
-  for (const s of STATUSES) {
-    if (typeof s !== 'string') fail('status enum corrupted');
+  for (const r of catalogue) {
+    if (r.objectives.some((o) => o.evidenceStandard.trim() === '')) {
+      fail(`${r.requirement} has an objective with a blank evidence standard`);
+    }
   }
 }
