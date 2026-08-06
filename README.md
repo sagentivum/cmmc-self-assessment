@@ -60,6 +60,38 @@ pnpm run e2e        # Playwright, including a subpath / zero-404 check
 `pnpm run gen` must be a no-op on a clean tree; CI enforces that, so silent data
 drift fails the build rather than the UI.
 
+## Deployment status
+
+`.github/workflows/deploy.yml` builds, lints, typechecks, runs the full unit +
+property + oracle + E2E suite, and publishes `app/dist` to GitHub Pages. The
+**build job passes**; the **Pages deployment does not currently complete**.
+
+This is an account-level GitHub Pages fault, not a fault in this project:
+
+- `actions/deploy-pages@v4` sits in `deployment_queued` and is aborted by its
+  own timeout, across four separate runs.
+- Switching to branch-based (legacy) Pages from a `gh-pages` branch fails the
+  same way — `Page build failed` after ~10 minutes.
+- A control repository (`sagentivum/pages-probe`) containing nothing but a
+  45-byte `index.html` and `.nojekyll`, served from `main` at `/`, **also**
+  fails with `Page build failed`. Nothing about the artifact is implicated.
+- `sagentivum.github.io` resolves correctly (185.199.108–111.153) and TLS
+  terminates, so this is not DNS or certificate provisioning.
+- githubstatus.com reported all systems operational throughout.
+
+Resolving it requires action on the GitHub account itself (support ticket, or
+whatever account state is blocking Pages builds). Once Pages builds work, this
+repository needs no changes — push to `main` and the existing workflow ships it.
+
+To verify the build locally in the meantime, exactly as it would be served from
+the `/cmmc-self-assessment/` subpath:
+
+```bash
+cd app
+pnpm install && pnpm run build
+node e2e/serve-subpath.mjs   # http://localhost:4317/cmmc-self-assessment/
+```
+
 ## Licence
 
 MIT for the application code. The catalogue is a derived US Government work — see
