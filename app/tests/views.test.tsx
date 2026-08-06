@@ -81,6 +81,27 @@ describe('Assess view', () => {
     ).toBeGreaterThan(0);
   });
 
+  it('distinguishes the 5 "do not deduct" notes from real partial credit', () => {
+    mount('/assess/3.1', <AssessView />, '/assess/:family');
+    // 3.1.12 carries a special-consideration rule but NO partial weight.
+    const row = screen.getByTestId('status-3.1.12').closest('.reqrow') as HTMLElement;
+    expect(within(row).getByText(/Do not deduct points if remote access not permitted/)).toBeInTheDocument();
+    expect(within(row).getByText(/not-applicable/i)).toBeInTheDocument();
+    expect(within(row).queryByRole('radio', { name: 'Partial' })).toBeNull();
+
+    // 3.5.3 does carry partial credit and gets no such note.
+    const { unmount } = render(
+      <MemoryRouter initialEntries={['/assess/3.5']}>
+        <Routes>
+          <Route path="/assess/:family" element={<AssessView />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    const partialRow = screen.getAllByTestId('status-3.5.3')[0]!.closest('.reqrow') as HTMLElement;
+    expect(within(partialRow).queryByText(/not-applicable/i)).toBeNull();
+    unmount();
+  });
+
   it('gotcha H: 3.12.4 shows its zero weight AND is flagged as still real work', () => {
     mount('/assess/3.12', <AssessView />, '/assess/:family');
     const row = screen.getByTestId('status-3.12.4').closest('.reqrow') as HTMLElement;

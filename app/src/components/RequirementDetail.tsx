@@ -6,14 +6,35 @@ import { useStore } from '../state/store';
 /** Gotcha I: partial_rule is DCMA's own text. Quote it, attribute it, never
  *  paraphrase it into UI copy. Seven requirements carry one; only two of those
  *  actually confer partial credit, and the others say "do not deduct if…". */
-export function SourceRule({ rule }: { rule: string }): React.ReactElement {
+export function SourceRule({
+  rule,
+  partialEligible,
+}: {
+  rule: string;
+  partialEligible: boolean;
+}): React.ReactElement {
   return (
-    <figure className="sourcequote">
-      <blockquote>{rule}</blockquote>
-      <figcaption>
-        Special consideration, quoted verbatim from the source DCMA DIBCAC database.
-      </figcaption>
-    </figure>
+    <>
+      <figure className="sourcequote">
+        <blockquote>{rule}</blockquote>
+        <figcaption>
+          Special consideration, quoted verbatim from the source DCMA DIBCAC database.
+        </figcaption>
+      </figure>
+      {/* Five of the seven special-consideration rules are "do not deduct if…"
+          notes rather than partial credit, and there is no third status for
+          them. Say so plainly rather than leaving the user to guess. */}
+      {!partialEligible && (
+        <div className="editorial">
+          <span className="editorial__tag">Editorial note — ours, not the source&rsquo;s</span>
+          This is a <b>not-applicable</b> note, not partial credit — the source database gives this
+          requirement no reduced score, so there is no third option here. If the condition it
+          describes genuinely applies to you, the source&rsquo;s instruction is to take no
+          deduction, which in this tool means marking it <b>satisfied</b> and recording why in the
+          note field.
+        </div>
+      )}
+    </>
   );
 }
 

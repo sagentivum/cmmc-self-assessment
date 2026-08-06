@@ -348,7 +348,9 @@ export function AssessView(): React.ReactElement {
                 )}
 
                 {/* Gotcha I: verbatim, attributed, never paraphrased. */}
-                {req.partialRule && <SourceRule rule={req.partialRule} />}
+                {req.partialRule && (
+                  <SourceRule rule={req.partialRule} partialEligible={req.partialWeight !== null} />
+                )}
 
                 {selected && (
                   <div className="stack" style={{ marginTop: '0.75rem', gap: '0.65rem' }}>
