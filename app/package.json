@@ -19,7 +19,8 @@
     "typecheck": "tsc -b --noEmit",
     "lint": "eslint src scripts tests",
     "e2e": "playwright test",
-    "check:codegen": "pnpm run gen && git diff --exit-code -- src/generated"
+    "check:codegen": "pnpm run gen && git diff --exit-code -- src/generated",
+    "test:all": "vitest run && vite build && vitest run tests/privacy.test.ts && playwright test"
   },
   "dependencies": {
     "react": "^19.1.0",

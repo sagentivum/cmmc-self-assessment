@@ -67,3 +67,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # GitHub's Pages ingestion has been sitting in `deployment_queued`
+          # well past the 10-minute default on this repo. Give it 30.
+          timeout: 1800000
+          error_count: 20
